@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<ruleset name="PurephpValidation">
+    <description>The coding standard for PurephpValidation.</description>
+
+    <config name="php_version" value="80200"/>
+
+    <rule ref="PSR12">
+    </rule>
+    <!-- tests are special -->
+    <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
+        <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule>
+    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+        <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule>
+    <rule ref="Generic.Files.LineLength.TooLong">
+        <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule>
+    <!-- Options:
+        - p: show progress
+        - s: show the rule name in error
+    -->
+    <arg value="ps" />
+
+</ruleset>
