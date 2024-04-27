@@ -8,20 +8,27 @@ use Macocci7\PurephpValidation\ValidatorFactory as Validator;
 $user = [
     'name' => 'fo',
     'email' => 'foo',
-    'password' => 'pass',
+    'pionts' => -1,
 ];
 
 // Valiation Rules
 $rules = [
     'name' => 'required|string|min:3|max:10',
     'email' => 'required|string|email:rfc,dns',
-    'password' => 'required|string|min:8|max:16',
+    'pionts' => 'required|int|min:1',
 ];
+
+// Set Tranlations Root Path
+// - 'lang/' folder must be placed under the path.
+Validator::translationsRootPath(__DIR__ . '/');
+
+// Set lang: 'en' as default
+Validator::lang('ja');
 
 // Validation
 $validator = Validator::make($user, $rules);
 
-// Checking Result
+// Checking result
 if ($validator->fails()) {
     var_dump($validator->errors()->messages());
 } else {

@@ -2,4 +2,9 @@ parameters:
 	level: 6
 	paths:
 		- ./src
+	excludePaths:
+		- ./src/Rules
 	treatPhpDocTypesAsCertain: false
+	#ignoreErrors:
+	#	- '#No error to ignore is reported#'
+	#	- '#is not contravariant with parameter#'

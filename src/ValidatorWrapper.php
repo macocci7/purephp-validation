@@ -1,16 +1,9 @@
 <?php
 
 /**
- * This file is a slightly modified version of the following code:
+ * This file is a modified version of the following code:
  * - BaseCode: https://github.com/jeffochoa/validator-factory/blob/master/src/ValidatorFactory.php
  * - BaseTag:  https://github.com/jeffochoa/validator-factory/releases/tag/1.0.1
- * - Modified: namespace is renamed from 'JeffOchoa'
- * - Modified: class name is renamed from 'ValicatorFactory'
- * - Modified: path set by the method 'getTranslationsRootPath' adjusted
- * - Modified: types of class properties added
- * - Modified: types of function parameters added
- * - Modified: PHPDoc blocks added.
- * - Modified: Following PSR12
  */
 
  namespace Macocci7\PurephpValidation;

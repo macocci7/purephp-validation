@@ -59,24 +59,22 @@ class ValidatorFactory
         if (strlen(self::$basePath) === 0) {
             self::translationsRootPath();
         }
-        $path = self::$basePath . 'lang/' . $lang . '/validation.php';
-        if (!is_readable($path)) {
-            throw new \Exception("Cannot read {$path}.");
-        }
         return self::$lang = $lang;
     }
 
     /**
      * Creates Validator
      * @param   array<string, mixed>    $data
-     * @param   array<string, string>   $rule
+     * @param   array<string, string>   $rules
      * @param   array<string, string>   $messages = []
+     * @param   array<string, string>   $attributes = []
      * @return  \Illuminate\Validation\Validator
      */
     public static function make(
         array $data,
-        array $rule,
-        array $messages = []
+        array $rules,
+        array $messages = [],
+        array $attributes = []
     ) {
         if (strlen(self::$basePath) === 0) {
             self::translationsRootPath();
@@ -86,6 +84,6 @@ class ValidatorFactory
             lang: self::$lang
         ))
         ->translationsRootPath(self::$basePath)
-        ->make($data, $rule, $messages);
+        ->make($data, $rules, $messages, $attributes);
     }
 }

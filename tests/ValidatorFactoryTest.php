@@ -52,7 +52,7 @@ final class ValidatorFactoryTest extends TestCase
      */
     public static function provide_make_can_make_validator_correctly(): array
     {
-        $rule = [
+        $rules = [
             'id' => 'required|int|min:1',
             'name' => 'required|string|min:3|max:10',
             'email' => 'required|string|email:rfc,dns',
@@ -66,8 +66,9 @@ final class ValidatorFactoryTest extends TestCase
                         'name' => null,
                         'email' => '',
                     ],
-                    'rule' => $rule,
+                    'rules' => $rules,
                     'messages' => [],
+                    'attributes' => [],
                 ],
                 'expected' => [
                     'fails' => true,
@@ -86,8 +87,9 @@ final class ValidatorFactoryTest extends TestCase
                         'name' => 'ho',
                         'email' => 'hoge',
                     ],
-                    'rule' => $rule,
+                    'rules' => $rules,
                     'messages' => [],
+                    'attributes' => [],
                 ],
                 'expected' => [
                     'fails' => true,
@@ -106,8 +108,9 @@ final class ValidatorFactoryTest extends TestCase
                         'name' => 'hogehogehog',
                         'email' => 'hoge@gmail.com',
                     ],
-                    'rule' => $rule,
+                    'rules' => $rules,
                     'messages' => [],
+                    'attributes' => [],
                 ],
                 'expected' => [
                     'fails' => true,
@@ -124,8 +127,9 @@ final class ValidatorFactoryTest extends TestCase
                         'name' => 'hogehogeho',
                         'email' => 'hoge@gmail.com',
                     ],
-                    'rule' => $rule,
+                    'rules' => $rules,
                     'messages' => [],
+                    'attributes' => [],
                 ],
                 'expected' => [
                     'fails' => false,
@@ -140,8 +144,9 @@ final class ValidatorFactoryTest extends TestCase
                         'name' => null,
                         'email' => '',
                     ],
-                    'rule' => $rule,
+                    'rules' => $rules,
                     'messages' => [],
+                    'attributes' => [],
                 ],
                 'expected' => [
                     'fails' => true,
@@ -160,8 +165,9 @@ final class ValidatorFactoryTest extends TestCase
                         'name' => 'ho',
                         'email' => 'hoge',
                     ],
-                    'rule' => $rule,
+                    'rules' => $rules,
                     'messages' => [],
+                    'attributes' => [],
                 ],
                 'expected' => [
                     'fails' => true,
@@ -180,13 +186,43 @@ final class ValidatorFactoryTest extends TestCase
                         'name' => 'hogehogehog',
                         'email' => 'hoge@gmail.com',
                     ],
-                    'rule' => $rule,
+                    'rules' => $rules,
                     'messages' => [],
+                    'attributes' => [],
                 ],
                 'expected' => [
                     'fails' => true,
                     'errors' => [
                         'name' => ['nameは、10文字以下で指定してください。'],
+                    ],
+                ],
+            ],
+            [
+                'input' => [
+                    'lang' => 'ja',
+                    'data' => [
+                        'id' => 0,
+                        'name' => 'ho',
+                        'email' => 'hoge',
+                    ],
+                    'rules' => $rules,
+                    'messages' => [
+                        'id.min' => '❤ :attribute は :min 以上の整数でなければなりません。',
+                        'name.min' => '❤ :attribute は :min 以上でなければなりません。',
+                        'email' => '❤ :attribute は有効なメールアドレスでなければなりません。',
+                    ],
+                    'attributes' => [
+                        'id' => '🔥ユーザーID🔥',
+                        'name' => '✨お名前✨',
+                        'email' => '📧メールアドレス📭',
+                    ],
+                ],
+                'expected' => [
+                    'fails' => true,
+                    'errors' => [
+                        'id' => ['❤ 🔥ユーザーID🔥 は 1 以上の整数でなければなりません。'],
+                        'name' => ['❤ ✨お名前✨ は 3 以上でなければなりません。'],
+                        'email' => ['❤ 📧メールアドレス📭 は有効なメールアドレスでなければなりません。'],
                     ],
                 ],
             ],
@@ -199,8 +235,9 @@ final class ValidatorFactoryTest extends TestCase
         ValidatorFactory::lang($input['lang']);
         $validator = ValidatorFactory::make(
             $input['data'],
-            $input['rule'],
-            $input['messages']
+            $input['rules'],
+            $input['messages'],
+            $input['attributes'],
         );
         $this->assertSame(
             \Illuminate\Validation\Validator::class,
