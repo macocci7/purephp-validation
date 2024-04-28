@@ -1,7 +1,7 @@
 {
     "name": "macocci7/purephp-validation",
     "description": "illuminate/validation wrapper for pure php.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "type": "library",
     "license": "MIT",
     "autoload": {

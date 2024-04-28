@@ -40,8 +40,8 @@ final class FileWrapperTest extends TestCase
                     'fails' => true,
                     'messages' => [
                         'photo' => [
-                            'The photo must be at least 40 kilobytes.',
-                            'validation.dimensions',
+                            'The photo field must be at least 40 kilobytes.',
+                            'The photo field has invalid image dimensions.',
                         ],
                     ],
                 ],
@@ -62,8 +62,8 @@ final class FileWrapperTest extends TestCase
                     'fails' => true,
                     'messages' => [
                         'photo' => [
-                            'The photo must be a file of type: png, gif.',
-                            'The photo may not be greater than 30 kilobytes.',
+                            'The photo field must be a file of type: png, gif.',
+                            'The photo field must not be greater than 30 kilobytes.',
                         ],
                     ],
                 ],
@@ -85,8 +85,8 @@ final class FileWrapperTest extends TestCase
                     'fails' => true,
                     'messages' => [
                         'photo' => [
-                            'The photo must be between 20 and 30 kilobytes.',
-                            'The photo must be an image.',
+                            'The photo field must be between 20 and 30 kilobytes.',
+                            'The photo field must be an image.',
                         ],
                     ],
                 ],

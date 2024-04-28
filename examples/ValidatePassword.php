@@ -20,10 +20,16 @@ $rules = [
         'required',
         Password::min(8)
             ->max(16)
+            // at least one letter
             ->letters()
+            // at least one uppercase
+            // and at least one lowercase letter
             ->mixedCase()
+            // at least one number
             ->numbers()
+            // at least one symbol
             ->symbols()
+            // not in a data leak
             ->uncompromised(),
     ],
 ];

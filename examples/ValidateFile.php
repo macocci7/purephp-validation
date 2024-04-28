@@ -20,11 +20,12 @@ $rules = [
     'photo' => [
         'required',
         File::image()
-        //File::types(['jpg', 'png'])
-            ->min(10)
-            ->max(144)
+            ->min(10)   // kilo bytes
+            ->max(144)  // kilo bytes
             ->dimensions(
-                Rule::dimensions()->maxWidth(200)->maxHeight(300)
+                Rule::dimensions()
+                    ->maxWidth(200)     // pix
+                    ->maxHeight(300)    // pix
             ),
     ],
 ];
