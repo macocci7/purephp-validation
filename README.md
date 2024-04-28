@@ -116,15 +116,13 @@ You can set the Translations Root Path before creating an instance of `Validator
 Validator::translationsRootPath(__DIR__ . '/');
 ```
 
-Here's an example code for setting Translations Root Path and Language: [SetTranslationsRootPath.php](examples/SetTranslationsRootPath.php)
-
 You can also set the Language before creating an instance of `Validator`:
 ```php
 // Set lang: 'en' as default (optional)
 Validator::lang('ja');
 ```
 
-Here's an example code for setting Language: [SetLang.php](examples/SetLang.php)
+Here's an example code for setting Translations Root Path and Language: [SetTranslationsRootPath.php](examples/SetTranslationsRootPath.php)
 
 ### 5.3. Using Password Rule Object
 
@@ -138,7 +136,19 @@ $validator = Validator::make(
     rules: [
         'password' => [
             'required',
-            Password::min(8),
+            Password::min(8)
+                ->max(16)
+                // at least one letter
+                ->letters()
+                // at least one uppercase
+                // and at least one lowercase letter
+                ->mixedCase()
+                // at least one number
+                ->numbers()
+                // at least one symbol
+                ->symbols()
+                // not in a data leak
+                ->uncompromised(),
         ],
     ],
 );
@@ -153,6 +163,7 @@ Here's an example code for using `Password` rule object: [ValidatePassword.php](
 You can validate files using Laravel's `File` rule object.
 
 ```php
+use Illuminate\Validation\Rule;
 use Macocci7\PurephpValidation\Rules\FileWrapper as File;
 use Symfony\Component\HttpFoundation\File\File as SymfonyFile;
 
@@ -166,7 +177,13 @@ $validator = Validator::make(
         'photo' => [
             'required',
             File::image()
-                ->max(1024), // kilo bytes
+                ->min(10)   // kilo bytes
+                ->max(144)  // kilo bytes
+                ->dimensions(
+                    Rule::dimensions()
+                        ->maxWidth(200)     // pix
+                        ->maxHeight(300)    // pix
+                ),
         ],
     ],
 );
@@ -180,7 +197,6 @@ Here's an example code for using Laravel's `File` rule object: [ValidateFile.php
 
 - [BasicUsage.php](examples/BasicUsage.php)
 - [SetTranslationsRootPath.php](examples/SetTranslationsRootPath.php)
-- [SetLang.php](examples/SetLang.php)
 - [ValidatePassword.php](examples/ValidatePassword.php)
 - [ValidateFile.php](examples/ValidateFile.php)
 

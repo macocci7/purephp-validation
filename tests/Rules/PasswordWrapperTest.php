@@ -29,7 +29,7 @@ final class PasswordWrapperTest extends TestCase
                 'expected' => [
                     'fails' => true,
                     'messages' => [
-                        'password' => ['The password must be at least 8 characters.'],
+                        'password' => ['The password field must be at least 8 characters.'],
                     ],
                 ],
             ],
@@ -60,7 +60,7 @@ final class PasswordWrapperTest extends TestCase
                 'expected' => [
                     'fails' => true,
                     'messages' => [
-                        'password' => ['The password may not be greater than 16 characters.'],
+                        'password' => ['The password field must not be greater than 16 characters.'],
                     ],
                 ],
             ],
@@ -85,9 +85,9 @@ final class PasswordWrapperTest extends TestCase
                     'fails' => true,
                     'messages' => [
                         'password' => [
-                            'validation.password.mixed',
-                            'validation.password.symbols',
-                            'validation.password.numbers',
+                            'The password field must contain at least one uppercase and one lowercase letter.',
+                            'The password field must contain at least one symbol.',
+                            'The password field must contain at least one number.',
                         ],
                     ],
                 ],

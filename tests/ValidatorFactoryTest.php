@@ -73,7 +73,7 @@ final class ValidatorFactoryTest extends TestCase
                 'expected' => [
                     'fails' => true,
                     'errors' => [
-                        'id' => ['The id must be an integer.'],
+                        'id' => ['The id field must be an integer.'],
                         'name' => ['The name field is required.'],
                         'email' => ['The email field is required.'],
                     ],
@@ -94,9 +94,9 @@ final class ValidatorFactoryTest extends TestCase
                 'expected' => [
                     'fails' => true,
                     'errors' => [
-                        'id' => ['The id must be at least 1.'],
-                        'name' => ['The name must be at least 3 characters.'],
-                        'email' => ['The email must be a valid email address.'],
+                        'id' => ['The id field must be at least 1.'],
+                        'name' => ['The name field must be at least 3 characters.'],
+                        'email' => ['The email field must be a valid email address.'],
                     ],
                 ],
             ],
@@ -115,7 +115,7 @@ final class ValidatorFactoryTest extends TestCase
                 'expected' => [
                     'fails' => true,
                     'errors' => [
-                        'name' => ['The name may not be greater than 10 characters.'],
+                        'name' => ['The name field must not be greater than 10 characters.'],
                     ],
                 ],
             ],
@@ -152,8 +152,8 @@ final class ValidatorFactoryTest extends TestCase
                     'fails' => true,
                     'errors' => [
                         'id' => ['idは整数で指定してください。'],
-                        'name' => ['nameは必ず指定してください。'],
-                        'email' => ['emailは必ず指定してください。'],
+                        'name' => ['名前は必ず指定してください。'],
+                        'email' => ['メールアドレスは必ず指定してください。'],
                     ],
                 ],
             ],
@@ -173,8 +173,8 @@ final class ValidatorFactoryTest extends TestCase
                     'fails' => true,
                     'errors' => [
                         'id' => ['idには、1以上の数字を指定してください。'],
-                        'name' => ['nameは、3文字以上で指定してください。'],
-                        'email' => ['emailには、有効なメールアドレスを指定してください。'],
+                        'name' => ['名前は、3文字以上で指定してください。'],
+                        'email' => ['メールアドレスには、有効なメールアドレスを指定してください。'],
                     ],
                 ],
             ],
@@ -193,7 +193,7 @@ final class ValidatorFactoryTest extends TestCase
                 'expected' => [
                     'fails' => true,
                     'errors' => [
-                        'name' => ['nameは、10文字以下で指定してください。'],
+                        'name' => ['名前は、10文字以下で指定してください。'],
                     ],
                 ],
             ],
