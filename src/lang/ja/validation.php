@@ -62,6 +62,7 @@ return [
     'image' => ':attributeには画像ファイルを指定してください。',
     'in' => '選択された:attributeは正しくありません。',
     'in_array' => ':attributeには:otherの値を指定してください。',
+    'instance' => ':attributeは次のいずれかのインスタンスを指定してください: :classes.',
     'integer' => ':attributeは整数で指定してください。',
     'ip' => ':attributeには、有効なIPアドレスを指定してください。',
     'ipv4' => ':attributeには、有効なIPv4アドレスを指定してください。',
