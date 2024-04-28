@@ -35,6 +35,27 @@ $validator = Validator::make(
 );
 ```
 
+Additionally and uniquely, `Instance` rule object is supported.
+
+```php
+$validator = Validator::make(
+    data: [
+        'prop1' => new Instance([]),
+        'prop2' => 'Instance',
+        'prop3' => fn () => true,
+    ],
+    rules: [
+        'prop1' => Instance::of(Instance::class),
+        'prop2' => Instance::of([
+            Instance::class,
+            Validator::class,
+            (fn () => true)::class,
+        ]),
+        'prop3' => Instance::of('Closure'),
+    ],
+);
+```
+
 ## 2. Contents
 
 - [1. Features](#1-features)
@@ -46,6 +67,7 @@ $validator = Validator::make(
     - [5.2. Setting Traslations Root Path and Language](#52-setting-translations-root-path-and-language)
     - [5.3. Using Passowrd Rule Object](#53-using-password-rule-object)
     - [5.4. Using File Rule Object](#54-using-file-rule-object)
+    - [5.5. Using Instance Rule Object](#55-using-instance-rule-object)
 - [6. Examples](#6-examples)
 - [7. LICENSE](#7-license)
 
@@ -193,12 +215,43 @@ You can learn more about Laravel's `File` rule object at the [Laravel Official D
 
 Here's an example code for using Laravel's `File` rule object: [ValidateFile.php](examples/ValidateFile.php)
 
+### 5.5. Using Instance Rule Object
+
+You can validate objects using `Instance` rule object. (unique feature)
+
+By using `Instance::of($class)` method as a rule, you can perform `$value instanceof $class` in the validation.
+
+`Instance::of()` accepts class name(s) as an argument.
+
+```php
+use Macocci7\PurephpValidation\Rules\Instance;
+
+$validator = Validator::make(
+    data: $data,
+    rules: [
+        'prop1' => Instance::of(Instance::class),
+        'prop2' => Instance::of([
+            // Macocci7\PurephpValidation\Rules\Instance
+            Instance::class,
+            // Macocci7\PurephpValidation\ValidatorFactory
+            Validator::class,
+            // Closure
+            (fn () => true)::class,
+        ]),
+        'prop3' => Instance::of('Closure'),
+    ],
+);
+```
+
+Here's an example code for using `Instance` rule object: [ValidateInstance.php](examples/ValidateInstance.php)
+
 ## 6. Examples
 
 - [BasicUsage.php](examples/BasicUsage.php)
 - [SetTranslationsRootPath.php](examples/SetTranslationsRootPath.php)
 - [ValidatePassword.php](examples/ValidatePassword.php)
 - [ValidateFile.php](examples/ValidateFile.php)
+- [ValidateInstance.php](examples/ValidateInstance.php)
 
 ## 7. LICENSE
 

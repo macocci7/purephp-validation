@@ -19,6 +19,7 @@ final class PasswordWrapperTest extends TestCase
         return [
             [
                 'input' => [
+                    'lang' => 'en',
                     'data' => [
                         'password' => 'passwor',
                     ],
@@ -35,6 +36,7 @@ final class PasswordWrapperTest extends TestCase
             ],
             [
                 'input' => [
+                    'lang' => 'en',
                     'data' => [
                         'password' => 'password',
                     ],
@@ -50,6 +52,7 @@ final class PasswordWrapperTest extends TestCase
             ],
             [
                 'input' => [
+                    'lang' => 'en',
                     'data' => [
                         'password' => 'passwordpasswordpassword',
                     ],
@@ -66,6 +69,7 @@ final class PasswordWrapperTest extends TestCase
             ],
             [
                 'input' => [
+                    'lang' => 'en',
                     'data' => [
                         'password' => 'password',
                     ],
@@ -98,6 +102,7 @@ final class PasswordWrapperTest extends TestCase
     #[DataProvider('provide_password_rule_can_work_correctly')]
     public function test_password_rule_can_work_correctly(array $input, array $expected): void
     {
+        ValidatorFactory::lang($input['lang']);
         $validator = ValidatorFactory::make($input['data'], $input['rules']);
         $this->assertSame($expected['fails'], $validator->fails());
         if ($validator->fails()) {
