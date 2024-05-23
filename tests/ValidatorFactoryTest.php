@@ -56,6 +56,7 @@ final class ValidatorFactoryTest extends TestCase
             'id' => 'required|int|min:1',
             'name' => 'required|string|min:3|max:10',
             'email' => 'required|string|email:rfc,dns',
+            'langs' => 'array|nullable|contains:en',
         ];
         return [
             [
@@ -126,6 +127,87 @@ final class ValidatorFactoryTest extends TestCase
                         'id' => 1,
                         'name' => 'hogehogeho',
                         'email' => 'hoge@gmail.com',
+                    ],
+                    'rules' => $rules,
+                    'messages' => [],
+                    'attributes' => [],
+                ],
+                'expected' => [
+                    'fails' => false,
+                    'errors' => [],
+                ],
+            ],
+            [
+                'input' => [
+                    'lang' => 'en',
+                    'data' => [
+                        'id' => 1,
+                        'name' => 'hogehogeho',
+                        'email' => 'hoge@gmail.com',
+                        'langs' => 'en',
+                    ],
+                    'rules' => $rules,
+                    'messages' => [],
+                    'attributes' => [],
+                ],
+                'expected' => [
+                    'fails' => true,
+                    'errors' => [
+                        'langs' => [
+                            0 => 'The langs field must be an array.',
+                            1 => 'The langs field is missing a required value.',
+                        ],
+                    ],
+                ],
+            ],
+            [
+                'input' => [
+                    'lang' => 'en',
+                    'data' => [
+                        'id' => 1,
+                        'name' => 'hogehogeho',
+                        'email' => 'hoge@gmail.com',
+                        'langs' => ['ja'],
+                    ],
+                    'rules' => $rules,
+                    'messages' => [],
+                    'attributes' => [],
+                ],
+                'expected' => [
+                    'fails' => true,
+                    'errors' => [
+                        'langs' => [
+                            0 => 'The langs field is missing a required value.',
+                        ],
+                    ],
+                ],
+            ],
+            [
+                'input' => [
+                    'lang' => 'en',
+                    'data' => [
+                        'id' => 1,
+                        'name' => 'hogehogeho',
+                        'email' => 'hoge@gmail.com',
+                        'langs' => ['en'],
+                    ],
+                    'rules' => $rules,
+                    'messages' => [],
+                    'attributes' => [],
+                ],
+                'expected' => [
+                    'fails' => false,
+                    'errors' => [],
+                ],
+            ],
+            [
+                'input' => [
+                    'lang' => 'en',
+                    'data' => [
+                        'id' => 1,
+                        'name' => 'hogehogeho',
+                        'email' => 'hoge@gmail.com',
+                        'langs' => ['ja', 'en'],
                     ],
                     'rules' => $rules,
                     'messages' => [],
