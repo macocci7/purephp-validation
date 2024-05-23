@@ -1,7 +1,7 @@
 {
     "name": "macocci7/purephp-validation",
     "description": "illuminate/validation wrapper for pure php.",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "type": "library",
     "license": "MIT",
     "autoload": {
@@ -25,6 +25,7 @@
         "phpunit/phpunit": "^11.1",
         "phpmd/phpmd": "^2.15",
         "php-parallel-lint/php-parallel-lint": "^1.4",
-        "phpstan/phpstan": "^1.10"
+        "phpstan/phpstan": "^1.10",
+        "askdkc/breezejp": "^1.8"
     }
 }
