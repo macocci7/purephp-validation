@@ -1,6 +1,7 @@
 vendor/
 composer.lock
 .php-version
+.tool-versions
 build/
 node_modules/
 storage/
