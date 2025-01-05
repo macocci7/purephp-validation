@@ -259,4 +259,4 @@ Here's an example code for using `Instance` rule object: [ValidateInstance.php](
 
 ***
 
-*Copyright 2024 macocci7*
+Copyright 2024 - 2025 macocci7.
